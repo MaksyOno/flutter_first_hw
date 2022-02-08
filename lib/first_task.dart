@@ -46,14 +46,14 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Center(
           child: Column(
         mainAxisSize: MainAxisSize.min,
-        children: <Widget>[
-          text('Local SVG'),
-          sizedBox(20),
+        children: const <Widget>[
+          ImageSourceText(text: 'Local SVG'),
+          MySizeBox(height: 20.0),
           localSvg,
-          sizedBox(50),
-          text('Web SVG'),
-          sizedBox(20),
-          webSvg,
+          MySizeBox(height: 50.0),
+          ImageSourceText(text: 'Web SVG'),
+          MySizeBox(height: 20.0),
+          webSvg
         ],
       )),
     );
@@ -64,20 +64,63 @@ Text text(String a) {
   return Text(a);
 }
 
-SizedBox sizedBox(double b) {
-  return SizedBox(
-    height: b,
-  );
+class ImageSourceText extends StatelessWidget {
+  const ImageSourceText({
+    Key? key,
+    required this.text,
+  }) : super(key: key);
+
+  final String text;
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(text);
+  }
 }
 
-final Widget localSvg = SizedBox(
-  height: 100,
-  width: 100,
-  child: SvgPicture.asset('assets/images/tiger.svg'),
-);
+class MySizeBox extends StatelessWidget {
+  const MySizeBox({
+    Key? key,
+    required this.height,
+  }) : super(key: key);
 
-final Widget webSvg = SizedBox(
-  height: 100,
-  width: 100,
-  child: SvgPicture.network('https://svgsilh.com/svg/1531577.svg'),
-);
+  final double height;
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: height,
+    );
+  }
+}
+
+class TypeOfImage extends StatelessWidget {
+  const TypeOfImage({
+    Key? key,
+    required this.type,
+    required this.asset,
+  }) : super(key: key);
+
+  final String type;
+  final String asset;
+
+  @override
+  Widget build(BuildContext context) {
+    if (type == 'local') {
+      return SizedBox(
+        height: 100.0,
+        width: 100.0,
+        child: SvgPicture.asset(asset),
+      );
+    } else {
+      return SizedBox(
+        height: 100.0,
+        width: 100.0,
+        child: SvgPicture.network(asset),
+      );
+    }
+  }
+}
+
+const localSvg = TypeOfImage(type: 'local', asset: 'assets/images/tiger.svg');
+const webSvg = TypeOfImage(type: 'web', asset: 'https://svgsilh.com/svg/1531577.svg');

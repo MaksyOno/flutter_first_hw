@@ -63,14 +63,33 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 
-final Widget localSvg = SizedBox(
-  height: 100,
-  width: 100,
-  child: SvgPicture.asset('assets/images/tiger.svg'),
-);
+class TypeOfImage extends StatelessWidget {
+  const TypeOfImage({
+    Key? key,
+    required this.type,
+    required this.asset,
+  }) : super(key: key);
 
-final Widget webSvg = SizedBox(
-  height: 100,
-  width: 100,
-  child: SvgPicture.network('https://svgsilh.com/svg/1531577.svg'),
-);
+  final String type;
+  final String asset;
+
+  @override
+  Widget build(BuildContext context) {
+    if (type == 'local') {
+      return SizedBox(
+        height: 100.0,
+        width: 100.0,
+        child: SvgPicture.asset(asset),
+      );
+    } else {
+      return SizedBox(
+        height: 100.0,
+        width: 100.0,
+        child: SvgPicture.network(asset),
+      );
+    }
+  }
+}
+
+const localSvg = TypeOfImage(type: 'local', asset: 'assets/images/tiger.svg');
+const webSvg = TypeOfImage(type: 'web', asset: 'https://svgsilh.com/svg/1531577.svg');
