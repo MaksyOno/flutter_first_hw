@@ -1,0 +1,31 @@
+name: flutter_first_hw
+description: A new Flutter project.
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.16.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_svg: ^1.0.3
+  cupertino_icons: ^1.0.2
+  carousel_slider:
+    git:
+      url: https://github.com/serenader2014/flutter_carousel_slider
+      ref: master
+
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^1.0.0
+  import_sorter: ^4.6.0
+
+
+flutter:
+  uses-material-design: true
+  assets:
+  - assets/images/tiger.svg
