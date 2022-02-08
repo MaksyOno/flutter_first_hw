@@ -60,10 +60,6 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 
-Text text(String a) {
-  return Text(a);
-}
-
 class ImageSourceText extends StatelessWidget {
   const ImageSourceText({
     Key? key,
